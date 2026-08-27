@@ -1,0 +1,27 @@
+# Device material and generated output
+artifacts/
+backups/
+downloads/
+logs/
+work/
+*.apk
+*.apex
+*.db
+*.img
+*.jks
+*.keystore
+*.tar
+*.tar.*
+*.zip
+*.idsig
+
+# Local configuration can contain serials and paths
+config.local.*
+*.local.json
+*.local.psd1
+
+# Editor and OS noise
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
