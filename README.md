@@ -18,9 +18,9 @@ The scripts require Android platform-tools on `PATH`. Any mutating command requi
 
 ## Companion repositories
 
-- `xiaomi13-lineage-customization`: boot guards, launcher layout, and state audits.
-- `xiaomi13-camera-kernel-compat`: camera/OIS kernel overlay and build recipe.
-- `xiaomi13-lsposed-compat`: scoped Android 16 compatibility modules.
+- [xiaomi13-lineage-customization](https://github.com/wangtong10086/xiaomi13-lineage-customization): boot guards, settings/IME state, launcher layout, and root/framework audits.
+- [xiaomi13-camera-kernel-compat](https://github.com/wangtong10086/xiaomi13-camera-kernel-compat): camera/OIS kernel overlay and build recipe.
+- [xiaomi13-lsposed-compat](https://github.com/wangtong10086/xiaomi13-lsposed-compat): scoped Android 16 compatibility modules.
 
 ## Safety model
 
