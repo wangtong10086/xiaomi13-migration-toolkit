@@ -29,6 +29,8 @@ Put ROM and locally built artifacts under an ignored `artifacts/` directory. Cre
 5. Apps and supported app-data restores. Exclude Xiaomi Wallet/TSM private data and re-provision cards through the issuer UI.
 6. Settings, IME, and launcher layout.
 
+For push repair, treat MiPush/XMSF and Google FCM as independent stacks. Systemize a verified XMSF APK and apply only reviewed Xposed scopes; never copy an XMSF registration database across signing certificates. For FCM, preserve GMS/Gmail data and diagnose the shared GMS connection before changing application policies or VPN routing.
+
 Stop at the first unexpected black screen, boot loop, partition mismatch, or SELinux regression. Return to the last bootable artifact instead of stacking more changes.
 
 ## 4. Validate
@@ -43,6 +45,9 @@ Record:
 - NFC and Secure Element service health, a newly provisioned destination card, and acceptance by its real reader;
 - launcher restart and database integrity;
 - recent crash buffer and module-manager state.
+- XMSF system-app flags, one real target-app registration, and ten non-duplicated MiPush deliveries;
+- the GMS-owned 443/5228-5230 connection, reconnect after network transitions, and ten numbered Gmail deliveries without permanent loss;
+- for Gmail, record transport delivery separately from notification policy: successful `gmail-ls` sync, marker present in the inbox, Android channel enabled, and the reviewed per-account **All** or **High priority only** setting.
 
 ## 5. Keep private material private
 
