@@ -26,7 +26,7 @@ Put ROM and locally built artifacts under an ignored `artifacts/` directory. Cre
 2. First clean boot, USB debugging, and build-fingerprint verification.
 3. Root runtime and one boot cycle.
 4. Framework manager and scoped compatibility modules.
-5. Apps and supported app-data restores.
+5. Apps and supported app-data restores. Exclude Xiaomi Wallet/TSM private data and re-provision cards through the issuer UI.
 6. Settings, IME, and launcher layout.
 
 Stop at the first unexpected black screen, boot loop, partition mismatch, or SELinux regression. Return to the last bootable artifact instead of stacking more changes.
@@ -40,10 +40,12 @@ Record:
 - camera capture, OIS behavior, and post-processing latency;
 - Play services/passkey operation using supported account re-enrollment;
 - Xiaomi Market download/update completion;
-- NFC wallet launch and a non-payment reader check;
+- NFC and Secure Element service health, a newly provisioned destination card, and acceptance by its real reader;
 - launcher restart and database integrity;
 - recent crash buffer and module-manager state.
 
 ## 5. Keep private material private
 
 Do not publish serials, account identifiers, wallet/card data, app-private databases, attestation material, bootloader unlock tokens, keystores, or full UI/log dumps. GitHub Releases in companion repositories contain only reproducible binaries and checksums.
+
+If a copied Xiaomi door card is visible but unusable, or deletion fails with TSM error `1010022`, do not copy more private data or eSE material. Preserve the source phone, back up the destination privately, reset only the destination TSM state, and add the card again through Xiaomi Wallet. The detailed recovery and validation procedure is maintained in the companion customization repository.

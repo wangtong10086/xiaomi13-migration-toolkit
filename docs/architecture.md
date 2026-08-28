@@ -8,7 +8,7 @@ Treating a complete Android migration as a file copy makes rollback and upgrades
 | Firmware/ROM | boot chain, dynamic partitions, vendor firmware | Use a package built for `fuxi`; verify hashes and slot topology |
 | Root runtime | patched boot/init_boot, Magisk modules | Install against the exact target build, then boot-test |
 | Framework hooks | LSPosed/Vector modules and scopes | Restore module APKs first; apply scopes only after package presence is verified |
-| Apps and user data | APKs, app databases, shared storage | Prefer supported migration/export; restore private data selectively |
+| Apps and user data | APKs, app databases, shared storage | Prefer supported migration/export; never restore Wallet/TSM data as a substitute for destination eSE provisioning |
 | Settings and UI | secure/global/system settings, IME, launcher | Apply last, with before/after exports and a rollback copy |
 
 ## Upgrade rule

@@ -12,6 +12,10 @@ This repository contains no device backup, account material, wallet data, signin
 4. Generate and verify SHA-256 manifests for every local artifact.
 5. Apply post-boot customizations from the companion repositories only after the base system boots cleanly.
 
+For Xiaomi Wallet and NFC, follow the companion [wallet/NFC recovery notes](https://github.com/wangtong10086/xiaomi13-lineage-customization/blob/main/docs/xiaomi-wallet-nfc.md). Card applets and keys must be provisioned on the destination secure element; never treat copied TSM private data as a working card migration.
+
+For a package whose APK code path was lost while its private data remains, `Restore-VerifiedAndroidApp.ps1` can pull one verified base APK from an explicit source serial, or use an explicit local vendor-signed APK, and reinstall it on an explicit target serial. The command is read-only unless `-Install` is supplied.
+
 For servers that support byte ranges, `Download-VerifiedRangeFile.ps1` can resume parallel segments and only promotes the assembled file after its length and expected hash match.
 
 The scripts require Android platform-tools on `PATH`. Any mutating command requires an explicit serial; there is intentionally no "first attached device" fallback.
