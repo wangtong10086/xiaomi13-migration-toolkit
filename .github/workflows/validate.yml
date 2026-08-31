@@ -1,0 +1,44 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-windows:
+    name: Static (Windows)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Parse PowerShell
+        shell: pwsh
+        run: |
+          $failed = @()
+          Get-ChildItem -Recurse -Filter '*.ps1' | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { $failed += $_.FullName }
+          }
+          if ($failed.Count) { throw "PowerShell parse failed: $($failed -join ', ')" }
+      - name: Exercise manifest integrity
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path work/fixture -Force | Out-Null
+          Set-Content -LiteralPath work/fixture/a.txt -Value 'fixture' -NoNewline
+          ./scripts/New-FileManifest.ps1 -Root work/fixture -OutputPath work/manifest.json
+          ./scripts/Test-FileManifest.ps1 -ManifestPath work/manifest.json
+          Set-Content -LiteralPath work/fixture/a.txt -Value 'tampered' -NoNewline
+          try {
+            ./scripts/Test-FileManifest.ps1 -ManifestPath work/manifest.json
+            throw 'Tampered fixture was accepted.'
+          } catch {
+            if ($_.Exception.Message -eq 'Tampered fixture was accepted.') { throw }
+          }
+      - name: Git whitespace check
+        run: git diff --check

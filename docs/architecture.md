@@ -1,5 +1,7 @@
 # Migration layers
 
+[简体中文](architecture.zh-CN.md) | English
+
 Treating a complete Android migration as a file copy makes rollback and upgrades fragile. This toolkit uses six independently verifiable layers.
 
 | Layer | Examples | Restore rule |

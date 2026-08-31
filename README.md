@@ -1,5 +1,7 @@
 # Xiaomi 13 migration toolkit
 
+[简体中文](README.zh-CN.md) | English
+
 Reusable, fail-closed tooling and documentation for moving a customized Xiaomi 13 (`fuxi`) installation to another Xiaomi 13. The workflow deliberately treats the ROM, boot/root state, apps, user data, and post-boot configuration as separate layers.
 
 This repository contains no device backup, account material, wallet data, signing key, ROM image, Magisk database, LSPosed/Vector database, or real device serial. Those remain outside Git and must be supplied locally.
@@ -35,3 +37,18 @@ The scripts require Android platform-tools on `PATH`. Any mutating command requi
 - Wallet and passkey credentials are re-provisioned through their issuers; copying private app data is not a portable backup strategy.
 
 Use only on devices you own and can recover through fastboot.
+
+## Compatibility status
+
+| Layer | Repository | Reviewed target | Status |
+| --- | --- | --- | --- |
+| Migration and verification | this repository | Xiaomi 13 `fuxi`; ADB/Fastboot selected by explicit serial | fail-closed tooling |
+| Camera/OIS kernel | `xiaomi13-camera-kernel-compat` | pinned LineageOS 23.2 / Android 16 kernel commits | build-specific prerelease |
+| Post-boot customization | `xiaomi13-lineage-customization` | reviewed Android 16 installation | staged, component-specific |
+| Framework compatibility | `xiaomi13-lsposed-compat` | exact app/ROM versions documented per module | version-locked prereleases |
+
+Nothing in this matrix authorizes flashing an artifact built for another product, ROM build, ABI, slot, or partition layout. A public repository makes the work reviewable; it does not make an artifact universal or risk-free.
+
+## Contributing and security
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Use Issues for reproducible compatibility findings and documentation improvements. Do not publish device serials, account identifiers, tokens, keyboxes, wallet/TSM data, private databases, or unredacted logs. Report security vulnerabilities through GitHub private vulnerability reporting as described in [SECURITY.md](SECURITY.md).

@@ -1,0 +1,23 @@
+name: Feature or documentation proposal / 功能或文档建议
+description: Propose a bounded tool or documentation improvement / 提议有限范围的工具或文档改进
+title: "[Proposal] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / 问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change and safety boundary / 建议改动与安全边界
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Validation and rollback / 验证与回滚
+    validations:
+      required: true

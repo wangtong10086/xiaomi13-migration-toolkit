@@ -1,0 +1,41 @@
+name: Compatibility report / 兼容性报告
+description: Report a reproducible device, ROM, or workflow compatibility finding / 报告可复现的兼容性问题
+title: "[Compatibility] "
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include serials, accounts, tokens, keyboxes, wallet/TSM data, private databases, or unredacted logs. / 禁止包含序列号、账户、token、keybox、钱包/TSM、私有数据库或未脱敏日志。"
+  - type: input
+    id: commit
+    attributes:
+      label: Repository commit / 仓库 commit
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Device, ROM, Android, and build / 设备、ROM、Android 与构建
+      placeholder: "fuxi; ROM name; Android version; sanitized build identifier"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction and observed result / 复现与实际结果
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback readiness / 回滚准备
+      description: Describe the verified backup or recovery path without attaching private artifacts.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Safety confirmation / 安全确认
+      options:
+        - label: I removed private identifiers and can recover the test device. / 我已移除私密标识并能够恢复测试设备。
+          required: true

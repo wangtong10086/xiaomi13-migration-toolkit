@@ -1,5 +1,7 @@
 # Reproducible migration runbook
 
+[简体中文](runbook.zh-CN.md) | English
+
 ## 1. Establish identity
 
 Connect one phone at a time for the initial capture. Save the inventory outside the repository:
